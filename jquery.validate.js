@@ -214,7 +214,7 @@ $.extend($.validator, {
 		errorContainer: $( [] ),
 		errorLabelContainer: $( [] ),
 		onsubmit: true,
-		ignore: ":hidden",
+		ignore: ":hidden:not(select.chzn-done)",
 		ignoreTitle: false,
 		onfocusin: function(element, event) {
 			this.lastActive = element;
@@ -427,7 +427,7 @@ $.extend($.validator, {
 			if( this.settings.focusInvalid ) {
 				try {
 					$(this.findLastActive() || this.errorList.length && this.errorList[0].element || [])
-					.filter(":visible")
+					.filter(":visible, select.chzn-done")
 					.focus()
 					// manually trigger focusin event; without it, focusin handler isn't called, findLastActive won't have anything to find
 					.trigger("focusin");
