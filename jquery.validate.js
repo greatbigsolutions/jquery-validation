@@ -37,7 +37,7 @@ $.extend($.fn, {
 
 		if ( validator.settings.onsubmit ) {
 
-			var inputsAndButtons = this.find("input, button");
+			var inputsAndButtons = this.find('input:not([type="hidden"]), button');
 
 			// allow suppresing validation by adding a cancel class to the submit button
 			inputsAndButtons.filter(".cancel").click(function () {
@@ -451,8 +451,8 @@ $.extend($.validator, {
 			// select all valid inputs inside the form (no submit or reset buttons)
 			return $(this.currentForm)
 			.find("input, select, textarea")
-			.not(":submit, :reset, :image, [disabled]")
 			.not( this.settings.ignore )
+			.not(":submit, :reset, :image, [disabled]")
 			.filter(function() {
 				!this.name && validator.settings.debug && window.console && console.error( "%o has no name assigned", this);
 
