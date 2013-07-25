@@ -6,3 +6,8 @@ The jQuery Validation Plugin provides drop-in validation for your existing forms
 If you've wrote custom methods that you'd like to contribute to additional-methods.js, create a branch, add the method there and send a pull request for that branch.
 
 If you've wrote a patch for some bug listed on http://plugins.jquery.com/project/issues/validate, please provide a link to that issue in your commit message.
+
+How to build a new version
+---
+
+Run the `release.sh` script in `build\`, passing in the current version number and the new version number you want. More details available in the script itself.
