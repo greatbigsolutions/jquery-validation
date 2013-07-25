@@ -10,4 +10,4 @@ If you've wrote a patch for some bug listed on http://plugins.jquery.com/project
 How to build a new version
 ---
 
-Run the `release.sh` script in `build\`, passing in the current version number and the new version number you want. More details available in the script itself.
+Run the `release.sh` script in `/build/`, passing in the current version number and the new version number you want. More details available in the script itself.
