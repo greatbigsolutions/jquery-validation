@@ -1036,7 +1036,8 @@ $.extend($.validator, {
 
 		// http://docs.jquery.com/Plugins/Validation/Methods/date
 		date: function(value, element) {
-			return this.optional(element) || !/Invalid|NaN/.test(new Date(value));
+			// accept anything that the Date constructor does, or anything of the format d-MMM-yyyy
+			return this.optional(element) || !/Invalid|NaN/.test(new Date(value)) || /^\d\d?-\w\w\w-\d\d\d\d/.test(value);
 		},
 
 		// http://docs.jquery.com/Plugins/Validation/Methods/dateISO
