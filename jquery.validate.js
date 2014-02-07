@@ -214,7 +214,7 @@ $.extend($.validator, {
 		errorContainer: $( [] ),
 		errorLabelContainer: $( [] ),
 		onsubmit: true,
-		ignore: ":hidden:not(select.chzn-done)",
+		ignore: ":hidden:not(select.chzn-done), .no-validate",
 		ignoreTitle: false,
 		onfocusin: function(element, event) {
 			this.lastActive = element;
@@ -321,8 +321,8 @@ $.extend($.validator, {
 						"[type='email'], [type='datetime'], [type='date'], [type='month'], " +
 						"[type='week'], [type='time'], [type='datetime-local'], " +
 						"[type='range'], [type='color'] ",
-						"focusin focusout keyup", delegate)
-				.validateDelegate("[type='radio'], [type='checkbox'], select, option", "click", delegate);
+						this.settings.ignore, "focusin focusout keyup", delegate)
+				.validateDelegate("[type='radio'], [type='checkbox'], select, option", this.settings.ignore, "click", delegate);
 
 			if (this.settings.invalidHandler)
 				$(this.currentForm).bind("invalid-form.validate", this.settings.invalidHandler);
@@ -1175,10 +1175,10 @@ $.format = $.validator.format;
 		});
 	};
 	$.extend($.fn, {
-		validateDelegate: function(delegate, type, handler) {
+		validateDelegate: function(delegate, elementsToExclude, type, handler) {
 			return this.bind(type, function(event) {
 				var target = $(event.target);
-				if (target.is(delegate)) {
+				if (target.is(delegate) && !target.is(elementsToExclude)) {
 					return handler.apply(target, arguments);
 				}
 			});
